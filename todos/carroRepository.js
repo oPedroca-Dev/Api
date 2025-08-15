@@ -1,4 +1,4 @@
-import { connectionCarro } from "../connection.js";
+import { conectionCarro } from "./conection.js";
 
 export async function listarCarro() {
   const comando = `
@@ -6,7 +6,7 @@ export async function listarCarro() {
       FROM carro
   `
 
-  const [registros] = await connectionCarro.query(comando)
+  const [registros] = await conectionCarro.query(comando)
   return registros;
 }
 
@@ -16,7 +16,7 @@ export async function consultarCarro(id) {
       FROM carro
      WHERE id = ?
   `;
-  const [registros] = await connectionCarro.query(comando, [id]);
+  const [registros] = await conectionCarro.query(comando, [id]);
   return registros[0];
 }
 
@@ -26,7 +26,7 @@ export async function filtrarCarroPorNome(nome) {
       FROM carro
      WHERE modelo like ?
   `;
-  const [registros] = await connectionCarro.query(comando, [`%${nome}%`]);
+  const [registros] = await conectionCarro.query(comando, [`%${nome}%`]);
   return registros;
 }
 
@@ -36,7 +36,7 @@ export async function inserirCarro(Carro) {
       values(?,?,?,?,?,?,?)
   `
 
-  const [info] = await connectionCarro.query(comando, [
+  const [info] = await conectionCarro.query(comando, [
     Carro.id, 
     Carro.Valor, 
     Carro.Placa, 
@@ -61,7 +61,7 @@ export async function atualizarCarro(id, Carro) {
      WHERE id = ?
   `;
 
-  const [info] = await connectionCarro.query(comando, [
+  const [info] = await conectionCarro.query(comando, [
     Carro.Valor, 
     Carro.Placa, 
     Carro.modelo, 
@@ -80,6 +80,6 @@ export async function removerCarro(id) {
      WHERE id = ?
   `;
 
-  const [info] = await connectionCarro.query(comando, [id]);
+  const [info] = await conectionCarro.query(comando, [id]);
   return info.affectedRows;
 }

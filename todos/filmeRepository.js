@@ -1,11 +1,11 @@
-import { connectionFilme } from "../connection.js";
+import { conectionFilme } from "./conection.js";
 
 export async function listarFilme() {
   const comando = `
     SELECT *
       FROM filme
   `
-  const [registros] = await connectionFilme.query(comando)
+  const [registros] = await conectionFilme.query(comando)
   return registros;
 }
 
@@ -15,7 +15,7 @@ export async function consultarFilme(id) {
       FROM filme
      WHERE id = ?
   `
-  const [registros] = await connectionFilme.query(comando, [id]);
+  const [registros] = await conectionFilme.query(comando, [id]);
   return registros[0];
 }
 
@@ -25,7 +25,7 @@ export async function filtrarFilmePorNome(nome) {
       FROM filme
      WHERE titulo like ?
   `
-  const [registros] = await connectionFilme.query(comando, [`%${nome}%`]);
+  const [registros] = await conectionFilme.query(comando, [`%${nome}%`]);
   return registros;
 }
 
@@ -34,7 +34,7 @@ export async function inserirFilme(Filme) {
     INSERT INTO filme (titulo, ano_lancamento, genero, duracao_minutos, diretor, avaliacao) 
     values(?,?,?,?,?,?)
   `
-  const [info] = await connectionFilme.query(comando, [
+  const [info] = await conectionFilme.query(comando, [
     Filme.titulo, 
     Filme.ano_lancamento, 
     Filme.genero, 
@@ -56,7 +56,7 @@ export async function atualizarFilme(id, filme) {
            avaliacao = ?
      WHERE id = ?
   `
-  const [info] = await connectionFilme.query(comando, [
+  const [info] = await conectionFilme.query(comando, [
     filme.titulo,
     filme.ano_lancamento,
     filme.genero,
@@ -73,6 +73,6 @@ export async function removerFilme(id) {
     DELETE FROM filme
      WHERE id = ?
   `
-  const [info] = await connectionFilme.query(comando, [id]);
+  const [info] = await conectionFilme.query(comando, [id]);
   return info.affectedRows;
 }

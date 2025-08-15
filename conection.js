@@ -1,69 +1,69 @@
 import mysql from 'mysql2/promise';
 
-const connectionPizza = await mysql.createConnection({
+const conectionPizza = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'pizzaria'
 });
 
-const connectionCarro = await mysql.createConnection({
+const conectionCarro = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'carro'
 });
 
-const connectionLivro = await mysql.createConnection({
+const conectionLivro = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'livro'
 });
 
-const connectionAnime = await mysql.createConnection({
+const conectionAnime = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'anime'
 });
 
-const connectionMoto = await mysql.createConnection({
+const conectionMoto = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'oficina_moto'
 });
 
-const connectionFilme = await mysql.createConnection({
+const conectionFilme = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'filme'
 });
 
-const connectionSerie = await mysql.createConnection({
+const conectionSerie = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'filme'
 });
 
-const connectionHospital = await mysql.createConnection({
+const conectionHospital = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'hospital'
 });
 
-const connectionTurma = await mysql.createConnection({
+const conectionTurma = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'turma'
 });
 
-const connectionLoja = await mysql.createConnection({
+const conectionLoja = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
@@ -71,14 +71,14 @@ const connectionLoja = await mysql.createConnection({
 });
 
 export {
-  connectionPizza,
-  connectionCarro,
-  connectionLivro,
-  connectionAnime,
-  connectionMoto,
-  connectionFilme,
-  connectionSerie,
-  connectionHospital,
-  connectionTurma,
-  connectionLoja
+  conectionPizza,
+  conectionCarro,
+  conectionLivro,
+  conectionAnime,
+  conectionMoto,
+  conectionFilme,
+  conectionSerie,
+  conectionHospital,
+  conectionTurma,
+  conectionLoja
 };

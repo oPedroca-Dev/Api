@@ -1,11 +1,11 @@
-import { connectionLivro } from "../connection.js";
+import { conectionLivro } from "./conection.js";
 
 export async function listarLivro() {
   const comando = `
     SELECT *
       FROM livro
   `
-  const [registros] = await connectionLivro.query(comando)
+  const [registros] = await conectionLivro.query(comando)
   return registros;
 }
 
@@ -14,7 +14,7 @@ export async function inserirLivro(Livro) {
    INSERT INTO livro (titulo, autor, ano_publicacao, genero, editora, preco) 
       values(?,?,?,?,?, ?)
   `
-  const [info] = await connectionLivro.query(comando, [Livro.titulo, Livro.autor, Livro.ano_publicacao, Livro.genero, Livro.editora, Livro.preco])
+  const [info] = await conectionLivro.query(comando, [Livro.titulo, Livro.autor, Livro.ano_publicacao, Livro.genero, Livro.editora, Livro.preco])
   return info.insertId;
 }
 
@@ -25,7 +25,7 @@ export async function consultarLivro(id) {
       FROM livro
      WHERE id = ?
   `
-  const [registros] = await connectionLivro.query(comando, [id]);
+  const [registros] = await conectionLivro.query(comando, [id]);
   return registros[0];
 }
 
@@ -35,7 +35,7 @@ export async function filtrarLivroPorNome(nome) {
       FROM livro
      WHERE titulo like ?
   `
-  const [registros] = await connectionLivro.query(comando, [`%${nome}%`]);
+  const [registros] = await conectionLivro.query(comando, [`%${nome}%`]);
   return registros;
 }
 
@@ -51,7 +51,7 @@ export async function atualizarLivro(id, livro) {
            preco = ?
      WHERE id = ?
   `
-  const [info] = await connectionLivro.query(comando, [
+  const [info] = await conectionLivro.query(comando, [
     livro.titulo,
     livro.autor,
     livro.ano_publicacao,
@@ -69,6 +69,6 @@ export async function removerLivro(id) {
     DELETE FROM livro
      WHERE id = ?
   `
-  const [info] = await connectionLivro.query(comando, [id]);
+  const [info] = await conectionLivro.query(comando, [id]);
   return info.affectedRows;
 }

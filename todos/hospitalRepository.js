@@ -1,11 +1,11 @@
-import { connectionHospital } from "../connection.js";
+import { conectionHospital } from "./conection.js";
 
 export async function listarHospital() {
   const comando = `
     SELECT *
       FROM sus
   `
-  const [registros] = await connectionHospital.query(comando)
+  const [registros] = await conectionHospital.query(comando)
   return registros;
 }
 
@@ -15,7 +15,7 @@ export async function consultarHospital(id) {
       FROM sus
      WHERE id_hospital = ?
   `
-  const [registros] = await connectionHospital.query(comando, [id]);
+  const [registros] = await conectionHospital.query(comando, [id]);
   return registros[0];
 }
 
@@ -25,7 +25,7 @@ export async function filtrarHospitalPorNome(nome) {
       FROM sus
      WHERE nm_hospital like ?
   `
-  const [registros] = await connectionHospital.query(comando, [`%${nome}%`]);
+  const [registros] = await conectionHospital.query(comando, [`%${nome}%`]);
   return registros;
 }
 
@@ -34,7 +34,7 @@ export async function inserirHospital(Hospital) {
     insert into sus(nm_hospital,nm_medico,ds_cargo,bt_ativo,hr_espediente)
         values(?,?,?,?,?)
   `
-  const [info] = await connectionHospital.query(comando, [
+  const [info] = await conectionHospital.query(comando, [
     Hospital.nm_hospital, 
     Hospital.nm_medico, 
     Hospital.ds_cargo, 
@@ -54,7 +54,7 @@ export async function atualizarHospital(id, hospital) {
            hr_espediente = ?
      where id_hospital = ?
   `
-  const [info] = await connectionHospital.query(comando, [
+  const [info] = await conectionHospital.query(comando, [
     hospital.nm_hospital,
     hospital.nm_medico,
     hospital.ds_cargo,
@@ -70,6 +70,6 @@ export async function removerHospital(id) {
     delete from sus
      where id_hospital = ?
   `
-  const [info] = await connectionHospital.query(comando, [id]);
+  const [info] = await conectionHospital.query(comando, [id]);
   return info.affectedRows;
 }
