@@ -1,13 +1,12 @@
 import { listarPizza, inserirPizza, filtraPorNome, consultarPizza, atualizarPizza, removerPizza} from './todos/pizzaRepository.js';
 import { listarCarro, inserirCarro, filtrarCarroPorNome, consultarCarro, atualizarCarro, removerCarro } from './todos/carroRepository.js';
 import { listarLivro, inserirLivro, filtrarLivroPorNome, consultarLivro, atualizarLivro, removerLivro } from './todos/livroRepository.js';
-import { listarAnime, inserirAnime, filtrarAnimePorNome, consultarAnime, atualizarAnime, removerAnime } from './todos/animeRepository.js';
 import { listarMoto, inserirMoto, filtrarMotoPorNome, consultarMoto, atualizarMoto, removerMoto } from './todos/motoRepository.js';
 import { listarFilme, inserirFilme, filtrarFilmePorNome, consultarFilme, atualizarFilme, removerFilme } from './todos/filmeRepository.js';
 import { listarSerie, inserirSerie, filtrarSeriePorNome, consultarSerie, atualizarSerie, removerSerie } from './todos/serieRepository.js';
 import { listarHospital, inserirHospital, filtrarHospitalPorNome, consultarHospital, atualizarHospital, removerHospital } from './todos/hospitalRepository.js';
 import { listarTurma, inserirTurma, filtrarTurmaPorNome, consultarTurma, atualizarTurma, removerTurma } from './todos/turmaRepository.js';
-import { listarLoja, inserirLoja, filtrarLojaPorNome, consultarLoja, atualizarLoja, removerLoja } from './todos/lojaRepository.js';
+import { listarApple, inserirApple, filtrarApplePorNome, consultarApple, atualizarApple, removerApple } from './todos/lojaRepository.js';
 
 
 import express from 'express'
@@ -123,39 +122,6 @@ api.delete('/livro/:id', async (req, resp) => {
   resp.send();
 });
 
-//---------------------------------------------//
-
-api.get('/anime', async (req, resp) => {
-  let registros = await listarAnime();
-  resp.send(registros);
-})
-api.get('/anime/:id', async (req, resp) => {
-  let id = Number(req.params.id);
-  let registro = await consultarAnime(id);
-  resp.send(registro);
-});
-api.get('/anime/filtro', async (req, resp) => {
-  let nome = req.query.nome;
-  let registros = await filtrarAnimePorNome(nome);
-  resp.send(registros);
-});
-api.put('/anime/:id', async (req, resp) => {
-  let id = Number(req.params.id);
-  let novoAnime = req.body;
-  await atualizarAnime(id, novoAnime);
-  resp.send();
-});
-api.post('/anime', async (req, resp) => {
-  let novoAnime = req.body;
-
-  let id = await inserirAnime(novoAnime);
-  resp.send({ novoId: id });
-})  
-api.delete('/anime/:id', async (req, resp) => {
-  let id = Number(req.params.id);
-  await removerAnime(id);
-  resp.send();
-});
 
 //---------------------------------------------//
 
@@ -327,35 +293,35 @@ api.delete('/turma/:id', async (req, resp) => {
 
 //---------------------------------------------//
 
-api.get('/loja', async (req, resp) => {
-  let loja = await listarLoja();
-  resp.send(loja);
+api.get('/apple', async (req, resp) => {
+  let apple = await listarApple();
+  resp.send(apple);
 })
-api.get('/loja/:id', async (req, resp) => {
+api.get('/apple/:id', async (req, resp) => {
   let id = Number(req.params.id);
-  let registro = await consultarLoja(id);
+  let registro = await consultarApple(id);
   resp.send(registro);
 });
-api.get('/loja/filtro', async (req, resp) => {
+api.get('/apple/filtro', async (req, resp) => {
   let nome = req.query.nome;
-  let registros = await filtrarLojaPorNome(nome);
+  let registros = await filtrarApplePorNome(nome);
   resp.send(registros);
 });
-api.put('/loja/:id', async (req, resp) => {
+api.put('/apple/:id', async (req, resp) => {
   let id = Number(req.params.id);
   let novaLoja = req.body;
-  await atualizarLoja(id, novaLoja);
+  await atualizarApple(id, novaLoja);
   resp.send();
 });
-api.post('/loja', async (req, resp) => {
+api.post('/apple', async (req, resp) => {
   let novaLoja = req.body;
 
-  let id = await inserirLoja(novaLoja);
+  let id = await inserirApple(novaLoja);
   resp.send({ novoId: id });
 })
-api.delete('/loja/:id', async (req, resp) => {
+api.delete('/apple/:id', async (req, resp) => {
   let id = Number(req.params.id);
-  await removerLoja(id);
+  await removerApple(id);
   resp.send();
 });
 

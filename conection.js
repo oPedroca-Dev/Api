@@ -21,13 +21,6 @@ const conectionLivro = await mysql.createConnection({
   database: 'livro'
 });
 
-const conectionAnime = await mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'anime'
-});
-
 const conectionMoto = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -63,22 +56,21 @@ const conectionTurma = await mysql.createConnection({
   database: 'turma'
 });
 
-const conectionLoja = await mysql.createConnection({
+const conectionApple = await mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'loja'
+  database: 'prova'
 });
 
 export {
   conectionPizza,
   conectionCarro,
   conectionLivro,
-  conectionAnime,
   conectionMoto,
   conectionFilme,
   conectionSerie,
   conectionHospital,
   conectionTurma,
-  conectionLoja
+  conectionApple
 };
